@@ -1,41 +1,41 @@
-import os
 import csv
 
-csv_path = os.path.join("budget_data")
-output_path = os.path.join("output.txt")
+ # create variables
 
-#Declare Variables and Lists for Data
+total = 0 # allows future functions to assign a value; for instance count + 1 = needs something to go by
+max_profit = None # omparing None to anything will always return False except None itself
+max_loss = None # omparing None to anything will always return False except None itself
+count = 0 # allows future functions to assign a value; for instance count + 1 = needs something to go by
 
-Total_number_of_Months = 0
-total_revenue = 0
-change = 0
+# calculations
 
+heading = None # deletes headers from data set
+with open("Resources/budget_data.csv")as file:
+    budget = csv.reader(file)
 
+    for record in budget: # creating loop
+        if heading is None:
+            heading = record
+        else:
+            amount = int(record[1]) # setting value for amount
+            count = count + 1
+            total = total + amount
+            if max_profit is None or amount > max_profit[1]: # using short circuited evaulation to evaulating the left hand side of it
+                max-profit = (record[0], amount) # max_profit holds both date and amount, max profit so far
+            if max_loss is None or amount < max_loss[1]:
+                max_loss = (record[0], amount)
 
-
-
-
-#Open CSV
-
-with open(csv_path, newline="") as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=",")
-    csv_header = next(csvreader)
-
-
-#Financial Analysis and Calculating Questions
-
-
-
-
-
-
-
-#Print Results
-
+# print results and using empty strings
 
 print("Financial Analysis")
 print("----------------------------")
-print("Total Months: ", num_months)
-print("Average  Change: $", avg_change)
-print("Greatest Increase in Profits: %s (%s)" % (max_inc_month, max_inc))
-print("Greatest Decrease in Profits:%s ($%s)" % (max_dec_month, max_dec))
+print("Total Months: ", count)
+print("Average  Change: $", total, sep="")
+print("Greatest Increase in Profits: ", max_profit[0], " ($" , max_profit[1], ")",sep="") 
+print("Greatest Decrease in Profits: ", max_loss[0], " ($", max_loss[1], ")",sep="")
+
+
+
+
+
+
