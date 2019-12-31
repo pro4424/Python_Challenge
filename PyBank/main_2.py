@@ -1,16 +1,38 @@
-import os, csv
-from pathlib import Path
+import os
+import csv
+
 
 # Declare Path
 
-import_file = Path("Users", "gregp", "Git_Trilogy", "Python_Challenge", "PyBank", "PyBank", "budget_data.csv")
-with open(import_file, "r") as text:
+csvpath = os.path.join("PyBank", "budget_data.csv")
+with open(csvpath, newline='') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
 
-    print(text)
-    
-    lines = text.read()
+    # Read and See Rows
 
-    print(lines)
+    print(csvreader)
 
-# Setup Reader
+    csv_header = next(csvreader)
+    print(f"CSV Header: {csv_header}")
+
+    for row in csvreader:
+        print(row)
+
+# Create Variables
+
+total = 0 # allows future functions to assign a value, for instance(+ 1) - acts as a starting point
+count = 0 # allows future functions to assign a value, for instance(+ 1) - acts as a starting point
+max_profit = 0
+max_loss = 0
+
+# Create Calculations 
+
+# Total Number of Months in the dataset
+
+
+
+
+
+
+
 
